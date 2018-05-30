@@ -2,34 +2,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Threading;
 
 namespace CacheConsoleApp
 {
     public class CacheManager : ICache
     {
 
-        private static Dictionary<string, ArrayList> _cacheDic = new Dictionary<string, ArrayList>();
+        private static Dictionary<string, CacheModel> _cacheDic = new Dictionary<string, CacheModel>();
+
+        private static List<string> _removeKey = new List<string>();
 
         private static object lockObj = new object();
 
         private static Object cacheObj = new object();
 
-        static System.Timers.Timer timer = new System.Timers.Timer();
-
-        static CacheManager()
+        static Thread thread = new Thread(() =>
         {
-            timer.Interval = 5000;
-            timer.Elapsed += delegate
+            while (true)
             {
                 foreach (var item in _cacheDic)
                 {
-                    if (Convert.ToDateTime(item.Value[1]) < DateTime.Now)
+                    if (item.Value.expTime < DateTime.Now)
                     {
-                        _cacheDic.Remove(item.Key);
+                        _removeKey.Add(item.Key);
                     }
                 }
-            };
+                for (int i = 0; i < _removeKey.Count; i++)
+                {
+                    _cacheDic.Remove(_removeKey[i]);
+                }
+                Thread.Sleep(10000);
+            }
+
+        });
+        static CacheManager()
+        {
+            try
+            {
+                thread.Start();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
 
         private CacheManager()
@@ -61,7 +78,7 @@ namespace CacheConsoleApp
         public bool Contains(string key)
         {
             return _cacheDic.ContainsKey(key)
-                && Convert.ToDateTime(_cacheDic[key][1]) > DateTime.Now;
+                && Convert.ToDateTime(_cacheDic[key].expTime) > DateTime.Now;
         }
 
         public void Clear()
@@ -76,7 +93,7 @@ namespace CacheConsoleApp
         {
             if (this.Contains(key))
             {
-                return _cacheDic[key][0].ToString();
+                return _cacheDic[key].Value.ToString();
             }
             return null;
         }
@@ -93,7 +110,7 @@ namespace CacheConsoleApp
         {
             if (this.Contains(key))
             {
-                return _cacheDic[key][0] is T ? (_cacheDic[key][0] as T) : null;
+                return _cacheDic[key].Value is T ? (_cacheDic[key].Value as T) : null;
             }
             return null;
         }
@@ -104,18 +121,19 @@ namespace CacheConsoleApp
             {
                 if (!this.Contains(key))
                 {
-                    ArrayList array = new ArrayList();
-                    array.Add(value);
-                    array.Add(DateTime.Now.AddMinutes(time));
-                    _cacheDic.Add(key, array);
+                    CacheModel cacheModel = new CacheModel();
+                    cacheModel.Value = value;
+                    cacheModel.expTime = DateTime.Now.AddMinutes(time);
+                    _cacheDic.Add(key, cacheModel);
                 }
                 else
                 {
-                    _cacheDic[key] = new ArrayList { value, DateTime.Now.AddMinutes(time) };
+                    CacheModel cacheModel = new CacheModel();
+                    cacheModel.Value = value;
+                    cacheModel.expTime = DateTime.Now.AddMinutes(time);
+                    _cacheDic[key] = cacheModel;
                 }
             }
         }
-
-
     }
 }

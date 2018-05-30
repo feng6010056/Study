@@ -9,6 +9,26 @@ namespace CacheConsoleApp
     {
         static void Main(string[] args)
         {
+            Thread thread1 = new Thread(() =>
+            {
+                CacheManager.Instance.Set("3", "1", 2);
+            });
+            thread1.Start();
+
+            Thread thread2 = new Thread(() =>
+            {
+                CacheManager.Instance.Set("3", "2", 2);
+            });
+            thread2.Start();
+
+            Thread thread3 = new Thread(() =>
+            {
+                CacheManager.Instance.Set("3", "2", 2);
+            });
+            thread3.Start();
+
+            Console.WriteLine(CacheManager.Instance.Get<string>("3"));
+
             CacheManager.Instance.Set("1", "2", 0.03);
             CacheManager.Instance.Set("2", "2", 1);
             Thread.Sleep(8000);
