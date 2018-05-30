@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,29 @@ namespace CacheConsoleApp
 {
     public class CacheManager : ICache
     {
+
+        private static Dictionary<string, ArrayList> _cacheDic = new Dictionary<string, ArrayList>();
+
         private static object lockObj = new object();
+
+        private static Object cacheObj = new object();
+
+        static System.Timers.Timer timer = new System.Timers.Timer();
+
+        static CacheManager()
+        {
+            timer.Interval = 5000;
+            timer.Elapsed += delegate
+            {
+                foreach (var item in _cacheDic)
+                {
+                    if (Convert.ToDateTime(item.Value[1]) < DateTime.Now)
+                    {
+                        _cacheDic.Remove(item.Key);
+                    }
+                }
+            };
+        }
 
         private CacheManager()
         {
@@ -37,39 +60,62 @@ namespace CacheConsoleApp
 
         public bool Contains(string key)
         {
-
-            return System.Web.HttpRuntime.Cache.Get(key) != null;
+            return _cacheDic.ContainsKey(key)
+                && Convert.ToDateTime(_cacheDic[key][1]) > DateTime.Now;
         }
 
         public void Clear()
         {
-            for (int i = 0; i < System.Web.HttpRuntime.Cache.Count; i++)
+            lock (cacheObj)
             {
-                string key = System.Web.HttpRuntime.Cache.GetEnumerator().Entry.Key.ToString();
-                this.Remove(key);
+                _cacheDic.Clear();
             }
-
-           
         }
 
         public string Get(string key)
         {
-            object value = System.Web.HttpRuntime.Cache.Get(key);
-            if (value != null)
+            if (this.Contains(key))
             {
-                return value.ToString();
+                return _cacheDic[key][0].ToString();
             }
             return null;
         }
 
         public bool Remove(string key)
         {
-            return System.Web.HttpRuntime.Cache.Remove(key) != null;
+            lock (cacheObj)
+            {
+                return _cacheDic.Remove(key);
+            }
         }
 
-        public void Set(string key, string value, TimeSpan cacheTime)
+        public T Get<T>(string key) where T : class
         {
-            System.Web.HttpRuntime.Cache.Insert(key, value);
+            if (this.Contains(key))
+            {
+                return _cacheDic[key][0] is T ? (_cacheDic[key][0] as T) : null;
+            }
+            return null;
         }
+
+        public void Set(string key, object value, double time)
+        {
+            lock (cacheObj)
+            {
+                if (!this.Contains(key))
+                {
+                    ArrayList array = new ArrayList();
+                    array.Add(value);
+                    array.Add(DateTime.Now.AddMinutes(time));
+                    _cacheDic.Add(key, array);
+                }
+                else
+                {
+                    _cacheDic[key] = new ArrayList { value, DateTime.Now.AddMinutes(time) };
+                }
+            }
+        }
+
+
     }
 }

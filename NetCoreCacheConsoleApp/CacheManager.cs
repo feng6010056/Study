@@ -14,13 +14,14 @@ namespace NetCoreCacheConsoleApp
         private static Object cacheObj = new object();
 
         static System.Timers.Timer timer = new System.Timers.Timer();
-        
-        
+
+
 
         static CacheManager()
         {
-            timer.Interval = 1000;
-            timer.Elapsed += delegate {
+            timer.Interval = 5000;
+            timer.Elapsed += delegate
+            {
                 foreach (var item in _cacheDic)
                 {
                     if (item.Value.Item2 < DateTime.Now)
@@ -89,7 +90,7 @@ namespace NetCoreCacheConsoleApp
             }
         }
 
-        public void Set(string key, object value, int time)
+        public void Set(string key, object value, double time)
         {
             lock (cacheObj)
             {
@@ -103,6 +104,15 @@ namespace NetCoreCacheConsoleApp
                     _cacheDic[key] = new Tuple<object, DateTime>(value, DateTime.Now.AddMinutes(time));
                 }
             }
+        }
+
+        public string Get(string key)
+        {
+            if (this.Contains(key))
+            {
+                return _cacheDic[key].Item1.ToString();
+            }
+            return null;
         }
     }
 }

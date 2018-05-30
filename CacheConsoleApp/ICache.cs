@@ -6,14 +6,16 @@ namespace CacheConsoleApp
 {
     public interface ICache
     {
-        string Get(string key);
+        T Get<T>(string key) where T : class;
 
-        void Set(string key, string value, TimeSpan expTime);
+        void Set(string key, object value, double time);
 
         bool Remove(string key);
 
         void Clear();
 
         bool Contains(string key);
+
+        string Get(string key);
     }
 }

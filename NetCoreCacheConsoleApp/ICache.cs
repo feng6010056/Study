@@ -8,12 +8,14 @@ namespace NetCoreCacheConsoleApp
     {
         T Get<T>(string key) where T : class;
 
-        void Set(string key, object value, int time);
+        void Set(string key, object value, double time);
 
         bool Remove(string key);
 
         void Clear();
 
         bool Contains(string key);
+
+        string Get(string key);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace CacheConsoleApp
 {
@@ -8,11 +9,11 @@ namespace CacheConsoleApp
     {
         static void Main(string[] args)
         {
-            CacheManager.Instance.Set("aaa", "bbb", new TimeSpan(1000));
-            CacheManager.Instance.Get("aaa");
-            CacheManager.Instance.Contains("aaa");
-            CacheManager.Instance.Remove("aaa");
-            CacheManager.Instance.Clear();
+            CacheManager.Instance.Set("1", "2", 0.03);
+            CacheManager.Instance.Set("2", "2", 1);
+            Thread.Sleep(8000);
+            Console.WriteLine(CacheManager.Instance.Get<string>("1"));
+            Console.WriteLine(CacheManager.Instance.Get<string>("2"));
             Console.Read();
         }
     }

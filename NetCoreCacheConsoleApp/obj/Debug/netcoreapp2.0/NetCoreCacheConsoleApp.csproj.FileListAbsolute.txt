@@ -19,3 +19,4 @@ D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConso
 D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfo.cs
 D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
 D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.csprojResolveAssemblyReference.cache

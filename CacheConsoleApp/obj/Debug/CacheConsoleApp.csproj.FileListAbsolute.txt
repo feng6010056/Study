@@ -5,3 +5,8 @@ C:\Users\admin\Desktop\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe
 C:\Users\admin\Desktop\CacheConsoleApp\bin\Debug\CacheConsoleApp.pdb
 C:\Users\admin\Desktop\CacheConsoleApp\obj\Debug\CacheConsoleApp.exe
 C:\Users\admin\Desktop\CacheConsoleApp\obj\Debug\CacheConsoleApp.pdb
+D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.csproj.CoreCompileInputs.cache
+D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.exe
+D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.pdb
+D:\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe
+D:\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.pdb
