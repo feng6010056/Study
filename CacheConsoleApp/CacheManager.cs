@@ -12,6 +12,9 @@ namespace CacheConsoleApp
 
         private static Dictionary<string, CacheModel> _cacheDic = new Dictionary<string, CacheModel>();
 
+        private static List<string> notExpire = new List<string>();
+
+
         private static List<string> _removeKey = new List<string>();
 
         private static object lockObj = new object();
@@ -24,9 +27,20 @@ namespace CacheConsoleApp
             {
                 foreach (var item in _cacheDic)
                 {
-                    if (item.Value.expTime < DateTime.Now)
+                    //正常时间过期
+                    if (!notExpire.Contains(item.Key)&&item.Value.expTime < DateTime.Now)
                     {
                         _removeKey.Add(item.Key);
+                    }
+                    //文件缓存依赖
+                    if (item.Value.cacheFile != null)
+                    {
+                        string fileName = item.Value.cacheFile.FullName;
+                        FileInfo info = new FileInfo(fileName);
+                        if (item.Value.cacheFile.LastWriteTime < info.LastWriteTime)
+                        {
+                            _removeKey.Add(item.Key);
+                        }
                     }
                 }
                 for (int i = 0; i < _removeKey.Count; i++)
@@ -137,13 +151,17 @@ namespace CacheConsoleApp
             }
         }
 
-        public void SetFile(string key, string filePath, double time)
+        public string Set(string key, object value, string fileName)
         {
-            if (File.Exists(filePath))
+            if (File.Exists(fileName))
             {
-                string txt = File.ReadAllText(filePath);
-                this.Set(key, txt, time);
+                FileInfo file = new FileInfo(fileName);
+                CacheModel cache = new CacheModel();
+                cache.cacheFile = file;
+                notExpire.Add(key);
+                this.Set(key, cache,999999);
             }
+            return null;
         }
     }
 }

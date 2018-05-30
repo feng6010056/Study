@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace CacheConsoleApp
@@ -9,5 +10,8 @@ namespace CacheConsoleApp
         public Object Value { get; set; }
 
         public DateTime expTime { get; set; }
+
+        public FileInfo cacheFile { get; set; }
+
     }
 }
