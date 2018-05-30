@@ -34,6 +34,9 @@ namespace CacheConsoleApp
             Thread.Sleep(8000);
             Console.WriteLine(CacheManager.Instance.Get<string>("1"));
             Console.WriteLine(CacheManager.Instance.Get<string>("2"));
+
+            CacheManager.Instance.SetFile("file", @"d://guihub.txt", 20);
+            Console.WriteLine(CacheManager.Instance.Get<string>("file"));
             Console.Read();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading;
 
@@ -133,6 +134,15 @@ namespace CacheConsoleApp
                     cacheModel.expTime = DateTime.Now.AddMinutes(time);
                     _cacheDic[key] = cacheModel;
                 }
+            }
+        }
+
+        public void SetFile(string key, string filePath, double time)
+        {
+            if (File.Exists(filePath))
+            {
+                string txt = File.ReadAllText(filePath);
+                this.Set(key, txt, time);
             }
         }
     }
