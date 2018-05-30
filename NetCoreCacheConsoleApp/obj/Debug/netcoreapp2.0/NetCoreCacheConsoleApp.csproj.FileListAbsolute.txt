@@ -1,0 +1,11 @@
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.deps.json
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.runtimeconfig.json
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.runtimeconfig.dev.json
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.csprojResolveAssemblyReference.cache
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfoInputs.cache
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfo.cs
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
+C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb
