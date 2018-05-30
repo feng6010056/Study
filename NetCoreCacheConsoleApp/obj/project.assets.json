@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Desktop\\NetCoreCacheConsoleApp\\NetCoreCacheConsoleApp.csproj",
+      "projectUniqueName": "D:\\GitHub\\Study\\NetCoreCacheConsoleApp\\NetCoreCacheConsoleApp.csproj",
       "projectName": "NetCoreCacheConsoleApp",
-      "projectPath": "C:\\Users\\admin\\Desktop\\NetCoreCacheConsoleApp\\NetCoreCacheConsoleApp.csproj",
+      "projectPath": "D:\\GitHub\\Study\\NetCoreCacheConsoleApp\\NetCoreCacheConsoleApp.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Desktop\\NetCoreCacheConsoleApp\\obj\\",
+      "outputPath": "D:\\GitHub\\Study\\NetCoreCacheConsoleApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

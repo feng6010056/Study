@@ -6,9 +6,9 @@ namespace NetCoreCacheConsoleApp
 {
     public interface ICache
     {
-        string Get(string key);
+        T Get<T>(string key) where T : class;
 
-        void Set(string key, string value);
+        void Set(string key, object value, int time);
 
         bool Remove(string key);
 

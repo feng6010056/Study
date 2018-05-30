@@ -9,3 +9,13 @@ C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCac
 C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfo.cs
 C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
 C:\Users\admin\Desktop\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb
+D:\GitHub\Study\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.deps.json
+D:\GitHub\Study\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.runtimeconfig.json
+D:\GitHub\Study\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.runtimeconfig.dev.json
+D:\GitHub\Study\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
+D:\GitHub\Study\NetCoreCacheConsoleApp\bin\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.csproj.CoreCompileInputs.cache
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfoInputs.cache
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.AssemblyInfo.cs
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.dll
+D:\GitHub\Study\NetCoreCacheConsoleApp\obj\Debug\netcoreapp2.0\NetCoreCacheConsoleApp.pdb

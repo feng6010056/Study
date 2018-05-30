@@ -7,11 +7,29 @@ namespace NetCoreCacheConsoleApp
 {
     public class CacheManager : ICache
     {
-        private static Dictionary<string, object> _cacheDic = new Dictionary<string, object>();
+        private static Dictionary<string, Tuple<Object, DateTime>> _cacheDic = new Dictionary<string, Tuple<Object, DateTime>>();
 
         private static object lockObj = new object();
 
         private static Object cacheObj = new object();
+
+        static System.Timers.Timer timer = new System.Timers.Timer();
+        
+        
+
+        static CacheManager()
+        {
+            timer.Interval = 1000;
+            timer.Elapsed += delegate {
+                foreach (var item in _cacheDic)
+                {
+                    if (item.Value.Item2 < DateTime.Now)
+                    {
+                        _cacheDic.Remove(item.Key);
+                    }
+                }
+            };
+        }
 
         private CacheManager()
         {
@@ -49,14 +67,16 @@ namespace NetCoreCacheConsoleApp
 
         public bool Contains(string key)
         {
-            return _cacheDic.ContainsKey(key);
+            return _cacheDic.ContainsKey(key)
+                && _cacheDic[key].Item2 > DateTime.Now;
         }
 
-        public string Get(string key)
+        public T Get<T>(string key)
+            where T : class
         {
             if (this.Contains(key))
             {
-                return _cacheDic[key].ToString();
+                return _cacheDic[key].Item1 is T ? (_cacheDic[key].Item1 as T) : null;
             }
             return null;
         }
@@ -69,13 +89,18 @@ namespace NetCoreCacheConsoleApp
             }
         }
 
-        public void Set(string key, string value)
+        public void Set(string key, object value, int time)
         {
             lock (cacheObj)
             {
                 if (!this.Contains(key))
                 {
-                    _cacheDic.Add(key, value);
+                    Tuple<object, DateTime> item = new Tuple<object, DateTime>(value, DateTime.Now.AddMinutes(time));
+                    _cacheDic.Add(key, item);
+                }
+                else
+                {
+                    _cacheDic[key] = new Tuple<object, DateTime>(value, DateTime.Now.AddMinutes(time));
                 }
             }
         }

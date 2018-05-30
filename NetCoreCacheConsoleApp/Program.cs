@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NetCoreCacheConsoleApp
 {
@@ -6,12 +8,14 @@ namespace NetCoreCacheConsoleApp
     {
         static void Main(string[] args)
         {
-            CacheManager.Instance.Set("aaa", "bbb");
-            CacheManager.Instance.Get("aaa");
-            CacheManager.Instance.Contains("aaa");
-            CacheManager.Instance.Remove("aaa");
-            CacheManager.Instance.Clear();
+            CacheManager.Instance.Set("1", "2", 3);
+            CacheManager.Instance.Set("2", "2", 10);
+            Thread.Sleep(5000);
+            Console.WriteLine(CacheManager.Instance.Get<string>("1"));
+            Console.WriteLine(CacheManager.Instance.Get<string>("2"));
             Console.Read();
         }
+
+        
     }
 }
