@@ -1,0 +1,7 @@
+D:\备份\Lind.DDD.Study\Lind.DDD.Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.csprojResolveAssemblyReference.cache
+D:\备份\Lind.DDD.Study\Lind.DDD.Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CacheConsoleApp\obj\Debug\CacheConsoleApp.csproj.CoreCompileInputs.cache
+C:\Users\admin\Desktop\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe
+C:\Users\admin\Desktop\CacheConsoleApp\bin\Debug\CacheConsoleApp.pdb
+C:\Users\admin\Desktop\CacheConsoleApp\obj\Debug\CacheConsoleApp.exe
+C:\Users\admin\Desktop\CacheConsoleApp\obj\Debug\CacheConsoleApp.pdb
