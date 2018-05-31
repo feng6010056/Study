@@ -37,7 +37,6 @@ namespace CacheConsoleApp
                         //文件缓存依赖
                         if (!string.IsNullOrWhiteSpace(item.Value.cacheFile))
                         {
-
                             string fileName = item.Value.cacheFile;
                             if (!File.Exists(fileName))
                             {
