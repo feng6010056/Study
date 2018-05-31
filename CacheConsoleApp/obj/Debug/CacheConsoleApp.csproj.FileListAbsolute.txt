@@ -10,7 +10,8 @@ D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.exe
 D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.pdb
 D:\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe
 D:\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.pdb
-D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe.config
 C:\Users\Administrator\Documents\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.exe
 C:\Users\Administrator\Documents\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.pdb
+D:\GitHub\Study\CacheConsoleApp\bin\Debug\CacheConsoleApp.exe.config
+D:\GitHub\Study\CacheConsoleApp\obj\Debug\CacheConsoleApp.csprojResolveAssemblyReference.cache

@@ -35,8 +35,8 @@ namespace CacheConsoleApp
             Console.WriteLine(CacheManager.Instance.Get<string>("1"));
             Console.WriteLine(CacheManager.Instance.Get<string>("2"));
 
-            CacheManager.Instance.SetFile("file", @"d://guihub.txt", 20);
-            Console.WriteLine(CacheManager.Instance.Get<string>("file"));
+            CacheManager.Instance.Set("byfile","123",@"d://guihub.txt");
+            Console.WriteLine(CacheManager.Instance.Get<string>("byfile"));
             Console.Read();
         }
     }

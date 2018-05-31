@@ -11,7 +11,9 @@ namespace CacheConsoleApp
 
         public DateTime expTime { get; set; }
 
-        public FileInfo cacheFile { get; set; }
+        public string cacheFile { get; set; }
+
+        public DateTime lastWriteTime { get; set; }
 
     }
 }

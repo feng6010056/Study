@@ -25,29 +25,42 @@ namespace CacheConsoleApp
         {
             while (true)
             {
-                foreach (var item in _cacheDic)
+                lock (cacheObj)
                 {
-                    //正常时间过期
-                    if (!notExpire.Contains(item.Key)&&item.Value.expTime < DateTime.Now)
+                    foreach (var item in _cacheDic)
                     {
-                        _removeKey.Add(item.Key);
-                    }
-                    //文件缓存依赖
-                    if (item.Value.cacheFile != null)
-                    {
-                        string fileName = item.Value.cacheFile.FullName;
-                        FileInfo info = new FileInfo(fileName);
-                        if (item.Value.cacheFile.LastWriteTime < info.LastWriteTime)
+                        //正常时间过期
+                        if (!notExpire.Contains(item.Key) && item.Value.expTime < DateTime.Now)
                         {
                             _removeKey.Add(item.Key);
                         }
+                        //文件缓存依赖
+                        if (string.IsNullOrWhiteSpace(item.Value.cacheFile))
+                        {
+
+                            string fileName = item.Value.cacheFile;
+                            if (!string.IsNullOrWhiteSpace(fileName) && !File.Exists(fileName))
+                            {
+                                _removeKey.Add(item.Key);
+                                return;
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(fileName))
+                            {
+                                FileInfo info = new FileInfo(fileName);
+                                if (item.Value.lastWriteTime < info.LastWriteTime)
+                                {
+                                    _removeKey.Add(item.Key);
+                                }
+                            }
+                        }
                     }
+                    for (int i = 0; i < _removeKey.Count; i++)
+                    {
+                        _cacheDic.Remove(_removeKey[i]);
+                    }
+                    Thread.Sleep(10000);
                 }
-                for (int i = 0; i < _removeKey.Count; i++)
-                {
-                    _cacheDic.Remove(_removeKey[i]);
-                }
-                Thread.Sleep(10000);
             }
 
         });
@@ -92,8 +105,15 @@ namespace CacheConsoleApp
 
         public bool Contains(string key)
         {
-            return _cacheDic.ContainsKey(key)
-                && Convert.ToDateTime(_cacheDic[key].expTime) > DateTime.Now;
+            if (_cacheDic.ContainsKey(key) && Convert.ToDateTime(_cacheDic[key].expTime) > DateTime.Now)
+            {
+                return true;
+            }
+            if (_cacheDic.ContainsKey(key) && _cacheDic[key].cacheFile != null && _cacheDic[key].lastWriteTime == (new FileInfo(_cacheDic[key].cacheFile)).LastWriteTime)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Clear()
@@ -148,20 +168,31 @@ namespace CacheConsoleApp
                     cacheModel.expTime = DateTime.Now.AddMinutes(time);
                     _cacheDic[key] = cacheModel;
                 }
+                if (time == -1)
+                {
+                    notExpire.Add(key);
+                }
             }
         }
 
-        public string Set(string key, object value, string fileName)
+        public void Set(string key, object value, string fileName)
         {
             if (File.Exists(fileName))
             {
-                FileInfo file = new FileInfo(fileName);
+                FileInfo fileInfo = new FileInfo(fileName);
                 CacheModel cache = new CacheModel();
-                cache.cacheFile = file;
-                notExpire.Add(key);
-                this.Set(key, cache,999999);
+                cache.cacheFile = fileName;
+                cache.lastWriteTime = fileInfo.LastWriteTime;
+                cache.Value = value;
+                if (!this.Contains(key))
+                {
+                    _cacheDic.Add(key, cache);
+                }
+                else
+                {
+                    _cacheDic[key] = cache;
+                }
             }
-            return null;
         }
     }
 }
