@@ -35,23 +35,19 @@ namespace CacheConsoleApp
                             _removeKey.Add(item.Key);
                         }
                         //文件缓存依赖
-                        if (string.IsNullOrWhiteSpace(item.Value.cacheFile))
+                        if (!string.IsNullOrWhiteSpace(item.Value.cacheFile))
                         {
 
                             string fileName = item.Value.cacheFile;
-                            if (!string.IsNullOrWhiteSpace(fileName) && !File.Exists(fileName))
+                            if (!File.Exists(fileName))
                             {
                                 _removeKey.Add(item.Key);
                                 return;
                             }
-
-                            if (!string.IsNullOrWhiteSpace(fileName))
+                            FileInfo info = new FileInfo(fileName);
+                            if (item.Value.lastWriteTime < info.LastWriteTime)
                             {
-                                FileInfo info = new FileInfo(fileName);
-                                if (item.Value.lastWriteTime < info.LastWriteTime)
-                                {
-                                    _removeKey.Add(item.Key);
-                                }
+                                _removeKey.Add(item.Key);
                             }
                         }
                     }
